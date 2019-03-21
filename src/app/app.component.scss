@@ -1,0 +1,21 @@
+$primary-color: #563D7C;
+
+@mixin primaryText {
+    color: white;
+    font-size: 18px; 
+}
+
+.navbar {
+    background-color: $primary-color;
+    height: 10vh;
+}
+
+.active-tab {
+    background-color: lighten($color: $primary-color, $amount: 15)
+}
+
+.nav-item {
+    a {
+        @include primaryText;
+    }
+}
