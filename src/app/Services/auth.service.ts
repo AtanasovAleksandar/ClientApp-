@@ -48,7 +48,7 @@ export class AuthService {
     this._userManager.getUser().then(user => {
       this.role = this._user.profile.role
 
-      var subject = new Rx.Subject();
+      // var subject = new Rx.Subject();
     });
   }
 
