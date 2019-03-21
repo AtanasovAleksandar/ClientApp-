@@ -19,3 +19,7 @@ $primary-color: #563D7C;
         @include primaryText;
     }
 }
+
+.disable-tab {
+    color: grey!important;
+}
