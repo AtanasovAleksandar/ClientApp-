@@ -5,7 +5,7 @@
             <a class="nav-link active-tab" [routerLink]="[ '/Home']" routerLinkActive="active-tab">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="[ '/About']" routerLinkActive="active-tab">About</a>
+            <a class="nav-link" *ngIf="isLoggedIn()" [routerLink]="[ '/About']" routerLinkActive="active-tab">About</a>
           </li>
           <li class="nav-item" *ngIf="userTitle === 'Admin'">
             <a class="nav-link" [routerLink]="[ '/Data']" routerLinkActive="active-tab">Data</a>

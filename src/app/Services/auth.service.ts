@@ -17,14 +17,29 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {
     var config = {
       authority: Constants.stsAuthority,
+
       client_id: Constants.clientId,
-      redirect_uri: `${Constants.clientRoot}assets/oidc-login-redirect.html`,
-      scope: 'openid projects-api profile',
+
+      redirect_uri: 'http://localhost:33117/signin-oidc',
+
+      scope: 'openid sensorsapi profile',
+
       response_type: 'id_token token',
-      // post_logout_redirect_uri: `${Constants.clientRoot}?postLogout=true`,//?postLogout=true is-- no toke store 
+
+      post_logout_redirect_uri: 'http://localhost:33117/signout-callback-oidc',
+
       userStore: new WebStorageStateStore({ store: window.localStorage }),
+
       automaticSilentRenew: true,
-      silent_redirect_uri: `${Constants.clientRoot}assets/silent-redirect.html` 
+
+      silent_redirect_uri: `${Constants.clientRoot}assets/silent-redirect.html`,
+
+      //more configuration
+      issuer: "http://localhost:33124",
+      authorization_endpoint: "http://localhost:33124/connect/authorize",
+      userinfo_endpoint: "http://localhost:33124/connect/userinfo",
+      end_session_endpoint: "http://localhost:33124/connect/endsession",
+      jwks_uri: "http://localhost:33124/.well-known/openid-configuration/jwks",
     };
     this._userManager = new UserManager(config);
     this._userManager.getUser().then(user => {
@@ -38,7 +53,6 @@ export class AuthService {
     this._userManager.events.addUserLoaded(args => {
       this._userManager.getUser().then(user => {
         this._user = user;
-
         // this.loadSecurityContext();
       });
     });
@@ -47,7 +61,8 @@ export class AuthService {
   getUserRole() {
     this._userManager.getUser().then(user => {
       this.role = this._user.profile.role
-
+      //late subscribe
+      console.log(this._user.profile.role)
       // var subject = new Rx.Subject();
     });
   }
@@ -82,7 +97,7 @@ export class AuthService {
   //   }, error => 
   //   console.error(error))
   //   // console.error(Utils.formatError(error)));
-    
+
   // }
 
 }

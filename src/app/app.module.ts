@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AboutComponent } from './about/about.component';
 import { AuthService } from './Services/auth.service';
+import { UnauthorizedComponent } from './unauthorized.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    AboutComponent
+    AboutComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
